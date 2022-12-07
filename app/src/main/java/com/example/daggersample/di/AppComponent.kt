@@ -1,6 +1,9 @@
 package com.example.daggersample.di
 
-import dagger.Module
+import com.example.daggersample.MainActivity
+import dagger.Component
 
-@Module(includes = [AppModule::class])
-interface AppComponent
+@Component(modules = [AppModule::class])
+interface AppComponent {
+    fun inject(mainActivity: MainActivity)
+}
