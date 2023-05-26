@@ -1,7 +1,7 @@
-package com.example.daggersample.services
+package com.example.a1_basic.services
 
-import com.example.daggersample.common.AppConst
-import com.example.daggersample.model.Photo
+import com.example.a1_basic.AppConst
+import com.example.a1_basic.data.Photo
 import retrofit2.http.GET
 import retrofit2.http.Query
 

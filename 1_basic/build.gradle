@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.daggersample'
+    namespace 'com.example.a1_basic'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.daggersample"
+        applicationId "com.example.a1_basic"
         minSdk 26
         targetSdk 33
         versionCode 1
