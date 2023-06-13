@@ -11,7 +11,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    private val repository: PhotoRepository
+    val page: Int,
+    private val photoRepository: PhotoRepository
 ) : ViewModel() {
 
     private val _photos: MutableStateFlow<List<Photo>> = MutableStateFlow(emptyList())
@@ -19,7 +20,7 @@ class MainViewModel @Inject constructor(
 
     fun getPhotos() {
         viewModelScope.launch {
-            _photos.value = repository.getListPhotos(1)
+            _photos.value = photoRepository.getListPhotos(page)
         }
     }
 }

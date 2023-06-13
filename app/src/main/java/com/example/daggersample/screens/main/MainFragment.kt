@@ -1,5 +1,6 @@
 package com.example.daggersample.screens.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +10,28 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.daggersample.appComponent
 import com.example.daggersample.databinding.FragmentMainBinding
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class MainFragment : Fragment() {
 
-    private val viewModel: MainViewModel by viewModels()
+    // Lazy и Provider не работаю с зависимостями, которые используют Assisted Inject
+    @Inject
+    lateinit var factory: MainViewModelFactory.Factory
+
+    private val viewModel: MainViewModel by viewModels {
+        factory.create(1)
+    }
     private val adapter: PhotosAdapter = PhotosAdapter()
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        context?.appComponent?.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,5 +53,10 @@ class MainFragment : Fragment() {
                 }
             }
         }
+    }
+
+    companion object {
+        const val TAG = "MainFragmentTag"
+        const val PAGE_KEY = "PAGE_KEY"
     }
 }

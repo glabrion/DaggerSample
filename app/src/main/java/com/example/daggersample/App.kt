@@ -5,7 +5,7 @@ import android.content.Context
 import com.example.daggersample.di.AppComponent
 import com.example.daggersample.di.DaggerAppComponent
 
-class App : Application() {
+class MainApp : Application() {
     lateinit var appComponent: AppComponent
         private set
 
@@ -15,8 +15,8 @@ class App : Application() {
     }
 }
 
-val Context.appComp: AppComponent
+val Context.appComponent: AppComponent
     get() = when (this) {
-        is App -> appComponent
-        else -> applicationContext.appComp
+        is MainApp -> appComponent
+        else -> applicationContext.appComponent
     }
