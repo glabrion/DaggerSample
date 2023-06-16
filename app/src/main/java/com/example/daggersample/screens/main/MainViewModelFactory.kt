@@ -14,8 +14,7 @@ class MainViewModelFactory @AssistedInject constructor(
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        require(modelClass == MainViewModel::class)
-        return MainViewModel(1, photoRepository) as T
+        return MainViewModel(page, photoRepository) as T
     }
 
     @AssistedFactory

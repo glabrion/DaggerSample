@@ -6,6 +6,7 @@ import com.example.daggersample.di.AppComponent
 import com.example.daggersample.di.DaggerAppComponent
 
 class MainApp : Application() {
+
     lateinit var appComponent: AppComponent
         private set
 

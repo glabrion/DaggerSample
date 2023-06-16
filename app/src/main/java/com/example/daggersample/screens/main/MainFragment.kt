@@ -1,5 +1,6 @@
 package com.example.daggersample.screens.main
 
+import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +18,6 @@ import javax.inject.Inject
 
 class MainFragment : Fragment() {
 
-    // Lazy и Provider не работаю с зависимостями, которые используют Assisted Inject
     @Inject
     lateinit var factory: MainViewModelFactory.Factory
 
@@ -27,11 +27,6 @@ class MainFragment : Fragment() {
     private val adapter: PhotosAdapter = PhotosAdapter()
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        context?.appComponent?.inject(this)
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +39,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.baseContext?.applicationContext?.appComponent?.inject(this)
         binding?.fmRvList?.adapter = adapter
         viewModel.getPhotos()
         viewLifecycleOwner.lifecycle.coroutineScope.launch {

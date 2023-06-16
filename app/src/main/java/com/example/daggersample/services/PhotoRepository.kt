@@ -5,7 +5,7 @@ import com.example.daggersample.model.Photo
 import javax.inject.Inject
 
 interface PhotoRepository {
-    suspend fun getListPhotos(page: Int?): List<Photo>
+    suspend fun getPhotos(page: Int?): List<Photo>
 }
 
 open class PhotoRepositoryImp @Inject constructor(
@@ -14,8 +14,8 @@ open class PhotoRepositoryImp @Inject constructor(
 ) :
     PhotoRepository {
 
-    override suspend fun getListPhotos(page: Int?): List<Photo> {
+    override suspend fun getPhotos(page: Int?): List<Photo> {
         analytics.sendEventGetPhotos()
-        return photoService.getListPhotos(page)
+        return photoService.getPhotos(page)
     }
 }

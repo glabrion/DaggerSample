@@ -20,7 +20,7 @@ class MainViewModel @Inject constructor(
 
     fun getPhotos() {
         viewModelScope.launch {
-            _photos.value = photoRepository.getListPhotos(page)
+            _photos.value = photoRepository.getPhotos(page)
         }
     }
 }
