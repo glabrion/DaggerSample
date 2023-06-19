@@ -11,8 +11,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/1_basic" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/1_assisted_inject" />
+            <option value="$PROJECT_DIR$/2_subcomponent" />
           </set>
         </option>
       </GradleProjectSettings>

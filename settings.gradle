@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "DaggerSample"
-include ':app'
-include ':1_basic'
+include ':1_assisted_inject'
+include ':2_subcomponent'

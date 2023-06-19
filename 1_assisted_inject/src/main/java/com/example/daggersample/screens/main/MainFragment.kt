@@ -17,16 +17,21 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
+    private val viewModel: MainViewModel by viewModels {
+        factory.create(1)
+    }
 
     @Inject
     lateinit var factory: MainViewModelFactory.Factory
 
-    private val viewModel: MainViewModel by viewModels {
-        factory.create(1)
-    }
     private val adapter: PhotosAdapter = PhotosAdapter()
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding
+
+    override fun onAttach(context: Context) {
+        context.appComponent.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +44,6 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.baseContext?.applicationContext?.appComponent?.inject(this)
         binding?.fmRvList?.adapter = adapter
         viewModel.getPhotos()
         viewLifecycleOwner.lifecycle.coroutineScope.launch {
